@@ -1,5 +1,4 @@
 # 🚀 NEURAWAVE PROJECT SNAPSHOT
-
 ==================================================
 FILE: ./neurawave-hackathon/index.html
 ==================================================
