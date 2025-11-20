@@ -1,59 +1,60 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { ChevronLeft, RefreshCw, Sparkles } from 'lucide-react';
 import { motion } from 'framer-motion';
-import { X } from 'lucide-react';
 
-export default function DailyCheckIn({ onComplete, onCancel }) {
-  const [vitals, setVitals] = useState({ stress: 5, mood: 5, steps: 5 });
-
+export default function Recommendations({ onBack }) {
   return (
-    <motion.div initial={{ y: '100%' }} animate={{ y: 0 }} exit={{ y: '100%' }} className="fixed inset-0 bg-white z-50 flex flex-col">
-      <div className="p-6 flex justify-between items-center border-b border-slate-100">
-        <h2 className="text-xl font-bold text-slate-800">Daily Check-in</h2>
-        <button onClick={onCancel} className="p-2 bg-slate-100 rounded-full text-slate-500 hover:bg-slate-200">
-            <X size={20} />
+    <motion.div initial={{ opacity: 0, x: 100 }} animate={{ opacity: 1, x: 0 }} className="h-full flex flex-col bg-slate-50">
+      {/* Header */}
+      <div className="p-6 flex items-center space-x-4 bg-white shadow-sm z-10">
+        <button onClick={onBack} className="p-2 hover:bg-slate-100 rounded-full transition-colors">
+            <ChevronLeft size={24} className="text-slate-600" />
         </button>
+        <h1 className="text-lg font-bold text-slate-800">AI Insights</h1>
       </div>
 
-      <div className="flex-1 p-8 space-y-10 overflow-y-auto">
+      <div className="flex-1 p-6 space-y-6 overflow-y-auto">
         
-        {/* Stress Slider */}
-        <div className="space-y-4">
-            <div className="flex justify-between">
-                <label className="font-bold text-slate-700">Stress Level</label>
-                <span className="px-2 py-1 bg-red-100 text-red-600 text-xs font-bold rounded">{vitals.stress}/10</span>
+        {/* AI Card Placeholder */}
+        <div className="bg-gradient-to-br from-indigo-500 to-purple-600 p-6 rounded-2xl text-white shadow-lg relative overflow-hidden">
+            <div className="absolute top-0 right-0 p-4 opacity-20">
+                <Sparkles size={64} />
             </div>
-            <input type="range" min="1" max="10" value={vitals.stress} onChange={(e) => setVitals({...vitals, stress: parseInt(e.target.value)})}
-                className="w-full h-3 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-red-500" />
-            <div className="flex justify-between text-xs text-slate-400"><span>Calm</span><span>Severe</span></div>
+            <h2 className="font-bold text-lg mb-2 flex items-center"><Sparkles size={18} className="mr-2" /> Personalized Plan</h2>
+            <p className="text-indigo-100 text-sm leading-relaxed">
+                Based on your recent check-ins, your migraine risk is moderate. We recommend reducing screen brightness and hydrating immediately.
+            </p>
+            <p className="mt-4 text-xs text-indigo-200 font-mono bg-black/20 inline-block px-2 py-1 rounded">
+                AI_CONFIDENCE: 88%
+            </p>
         </div>
 
-        {/* Mood Slider */}
-        <div className="space-y-4">
-            <div className="flex justify-between">
-                <label className="font-bold text-slate-700">Mood</label>
-                <span className="px-2 py-1 bg-blue-100 text-blue-600 text-xs font-bold rounded">{vitals.mood}/10</span>
+        {/* Dummy Actions */}
+        <div className="space-y-3">
+            <h3 className="text-sm font-bold text-slate-500 uppercase tracking-wider">Suggested Actions</h3>
+            
+            <div className="bg-white p-4 rounded-xl border border-slate-200 flex items-center space-x-4">
+                <div className="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center text-blue-600">💧</div>
+                <div>
+                    <div className="font-bold text-slate-700">Drink 500ml Water</div>
+                    <div className="text-xs text-slate-400">Hydration stabilizes pressure</div>
+                </div>
             </div>
-            <input type="range" min="1" max="10" value={vitals.mood} onChange={(e) => setVitals({...vitals, mood: parseInt(e.target.value)})}
-                className="w-full h-3 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-blue-500" />
-            <div className="flex justify-between text-xs text-slate-400"><span>Sad</span><span>Happy</span></div>
-        </div>
 
-        {/* Steps Slider */}
-        <div className="space-y-4">
-            <div className="flex justify-between">
-                <label className="font-bold text-slate-700">Activity</label>
-                <span className="px-2 py-1 bg-green-100 text-green-600 text-xs font-bold rounded">{vitals.steps * 1000} Steps</span>
+            <div className="bg-white p-4 rounded-xl border border-slate-200 flex items-center space-x-4">
+                <div className="w-10 h-10 bg-purple-100 rounded-full flex items-center justify-center text-purple-600">😴</div>
+                <div>
+                    <div className="font-bold text-slate-700">20 min Power Nap</div>
+                    <div className="text-xs text-slate-400">Reset your visual cortex</div>
+                </div>
             </div>
-            <input type="range" min="1" max="10" value={vitals.steps} onChange={(e) => setVitals({...vitals, steps: parseInt(e.target.value)})}
-                className="w-full h-3 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-green-500" />
-            <div className="flex justify-between text-xs text-slate-400"><span>Sedentary</span><span>Active (10k+)</span></div>
         </div>
 
       </div>
 
-      <div className="p-6 border-t border-slate-100">
-        <button onClick={() => onComplete(vitals)} className="w-full py-4 bg-slate-900 text-white rounded-xl font-bold shadow-lg hover:bg-slate-800 transition-all">
-            Confirm Entry
+      <div className="p-6 border-t border-slate-100 bg-white">
+        <button className="w-full py-3 border border-slate-200 text-slate-600 rounded-xl font-medium hover:bg-slate-50 transition-all flex items-center justify-center">
+            <RefreshCw size={18} className="mr-2" /> Refresh Recommendations
         </button>
       </div>
     </motion.div>

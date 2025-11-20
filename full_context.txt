@@ -1,0 +1,594 @@
+# 🚀 NEURAWAVE PROJECT SNAPSHOT
+
+==================================================
+FILE: ./neurawave-hackathon/index.html
+==================================================
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>neurawave-hackathon</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>
+
+==================================================
+FILE: ./neurawave-hackathon/tailwind.config.js
+==================================================
+export default {
+  content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
+  theme: {
+    extend: {
+      animation: {
+        blob: "blob 7s infinite",
+      },
+      keyframes: {
+        blob: {
+          "0%": { transform: "translate(0px, 0px) scale(1)" },
+          "33%": { transform: "translate(30px, -50px) scale(1.1)" },
+          "66%": { transform: "translate(-20px, 20px) scale(0.9)" },
+          "100%": { transform: "translate(0px, 0px) scale(1)" },
+        },
+      },
+    },
+  },
+  plugins: [],
+}
+==================================================
+FILE: ./neurawave-hackathon/vite.config.js
+==================================================
+import { defineConfig } from 'vite'
+import react from '@vitejs/plugin-react'
+
+// https://vite.dev/config/
+export default defineConfig({
+  plugins: [react()],
+})
+
+==================================================
+FILE: ./neurawave-hackathon/README.md
+==================================================
+# React + Vite
+
+This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+
+Currently, two official plugins are available:
+
+- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
+- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+
+## React Compiler
+
+The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+
+## Expanding the ESLint configuration
+
+If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+
+==================================================
+FILE: ./neurawave-hackathon/package.json
+==================================================
+{
+  "name": "neurawave-hackathon",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "lint": "eslint .",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "framer-motion": "^12.23.24",
+    "lucide-react": "^0.554.0",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.39.1",
+    "@types/react": "^19.2.5",
+    "@types/react-dom": "^19.2.3",
+    "@vitejs/plugin-react": "^5.1.1",
+    "eslint": "^9.39.1",
+    "eslint-plugin-react-hooks": "^7.0.1",
+    "eslint-plugin-react-refresh": "^0.4.24",
+    "globals": "^16.5.0",
+    "vite": "^7.2.4"
+  }
+}
+
+==================================================
+FILE: ./neurawave-hackathon/eslint.config.js
+==================================================
+import js from '@eslint/js'
+import globals from 'globals'
+import reactHooks from 'eslint-plugin-react-hooks'
+import reactRefresh from 'eslint-plugin-react-refresh'
+import { defineConfig, globalIgnores } from 'eslint/config'
+
+export default defineConfig([
+  globalIgnores(['dist']),
+  {
+    files: ['**/*.{js,jsx}'],
+    extends: [
+      js.configs.recommended,
+      reactHooks.configs.flat.recommended,
+      reactRefresh.configs.vite,
+    ],
+    languageOptions: {
+      ecmaVersion: 2020,
+      globals: globals.browser,
+      parserOptions: {
+        ecmaVersion: 'latest',
+        ecmaFeatures: { jsx: true },
+        sourceType: 'module',
+      },
+    },
+    rules: {
+      'no-unused-vars': ['error', { varsIgnorePattern: '^[A-Z_]' }],
+    },
+  },
+])
+
+==================================================
+FILE: ./neurawave-hackathon/src/App.css
+==================================================
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+.logo {
+  height: 6em;
+  padding: 1.5em;
+  will-change: filter;
+  transition: filter 300ms;
+}
+.logo:hover {
+  filter: drop-shadow(0 0 2em #646cffaa);
+}
+.logo.react:hover {
+  filter: drop-shadow(0 0 2em #61dafbaa);
+}
+
+@keyframes logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  a:nth-of-type(2) .logo {
+    animation: logo-spin infinite 20s linear;
+  }
+}
+
+.card {
+  padding: 2em;
+}
+
+.read-the-docs {
+  color: #888;
+}
+
+==================================================
+FILE: ./neurawave-hackathon/src/index.css
+==================================================
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  background-color: #f0f4f8;
+  color: #1e293b;
+  font-family: 'Inter', sans-serif;
+}
+
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+
+==================================================
+FILE: ./neurawave-hackathon/src/main.jsx
+==================================================
+import { StrictMode } from 'react'
+import { createRoot } from 'react-dom/client'
+import './index.css'
+import App from './App.jsx'
+
+createRoot(document.getElementById('root')).render(
+  <StrictMode>
+    <App />
+  </StrictMode>,
+)
+
+==================================================
+FILE: ./neurawave-hackathon/src/App.jsx
+==================================================
+import React, { useState } from 'react';
+import Onboarding from './components/Onboarding';
+import Dashboard from './components/Dashboard';
+import Recommendations from './components/Recommendations';
+import DailyCheckIn from './components/DailyCheckIn';
+
+export default function App() {
+  // App State
+  const [view, setView] = useState('onboarding'); // 'onboarding', 'dashboard', 'daily', 'recommendations'
+  const [userData, setUserData] = useState(null);
+  const [dailyData, setDailyData] = useState(null);
+
+  // Completion Handlers
+  const handleOnboardingComplete = (data) => {
+    setUserData(data);
+    setView('dashboard');
+  };
+
+  const handleDailyComplete = (data) => {
+    setDailyData(data);
+    setView('dashboard');
+  };
+
+  return (
+    <div className="min-h-screen flex flex-col items-center justify-center bg-slate-50 overflow-hidden relative">
+      {/* Background Decor for visual flair */}
+      <div className="absolute top-[-20%] right-[-10%] w-[500px] h-[500px] bg-blue-200 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob"></div>
+      <div className="absolute bottom-[-20%] left-[-10%] w-[500px] h-[500px] bg-teal-200 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob animation-delay-2000"></div>
+
+      <main className="w-full max-w-md md:max-w-lg lg:max-w-4xl min-h-screen md:min-h-[800px] bg-white/80 md:rounded-3xl shadow-2xl backdrop-blur-sm border border-white/20 overflow-hidden relative">
+        
+        {view === 'onboarding' && <Onboarding onComplete={handleOnboardingComplete} />}
+        
+        {view === 'dashboard' && (
+          <Dashboard 
+            user={userData} 
+            onDailyCheckIn={() => setView('daily')}
+            onRecommendations={() => setView('recommendations')}
+          />
+        )}
+
+        {view === 'daily' && <DailyCheckIn onComplete={handleDailyComplete} onCancel={() => setView('dashboard')} />}
+        
+        {view === 'recommendations' && <Recommendations onBack={() => setView('dashboard')} />}
+
+      </main>
+    </div>
+  );
+}
+==================================================
+FILE: ./neurawave-hackathon/src/components/Onboarding.jsx
+==================================================
+import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { ChevronRight, ChevronLeft, CheckCircle } from 'lucide-react';
+
+export default function Onboarding({ onComplete }) {
+  const [step, setStep] = useState(1);
+  const [formData, setFormData] = useState({
+    firstName: '', lastName: '', dob: '', sex: '',
+    medicalHistory: {
+      alcoholism: false, painkillers: false, pastMigraine: false, epilepsy: false,
+      trauma: false, sleepDisorder: false, depression: false, cardiovascular: false
+    },
+    triggers: ''
+  });
+
+  const updateField = (field, value) => setFormData({ ...formData, [field]: value });
+  
+  const toggleMedical = (key) => {
+    setFormData({
+      ...formData,
+      medicalHistory: { ...formData.medicalHistory, [key]: !formData.medicalHistory[key] }
+    });
+  };
+
+  const next = () => setStep(s => s + 1);
+  const back = () => setStep(s => s - 1);
+
+  // Animation Variants
+  const slideVariants = {
+    enter: (direction) => ({ x: direction > 0 ? 100 : -100, opacity: 0 }),
+    center: { x: 0, opacity: 1 },
+    exit: (direction) => ({ x: direction < 0 ? 100 : -100, opacity: 0 }),
+  };
+
+  return (
+    <div className="h-full w-full flex flex-col p-6 md:p-10">
+      <div className="flex justify-between items-center mb-8">
+        <h2 className="text-sm font-bold tracking-widest text-slate-400 uppercase">Setup Phase 1</h2>
+        <div className="text-xs font-medium px-3 py-1 bg-blue-100 text-blue-600 rounded-full">
+          Step {step} of 6
+        </div>
+      </div>
+
+      <div className="flex-1 relative overflow-hidden">
+        <AnimatePresence mode="wait">
+          
+          {/* Q1: Welcome Animation */}
+          {step === 1 && (
+            <motion.div key="step1" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -20 }} className="flex flex-col items-center justify-center h-full text-center space-y-6">
+              <div className="w-24 h-24 bg-gradient-to-tr from-blue-500 to-teal-400 rounded-full flex items-center justify-center shadow-lg mb-4">
+                <span className="text-4xl">🧠</span>
+              </div>
+              <h1 className="text-4xl font-bold text-slate-800">Neurawave</h1>
+              <p className="text-slate-500 max-w-xs">Your personal companion for migraine prediction and wellbeing.</p>
+              <button onClick={next} className="mt-8 px-8 py-3 bg-slate-900 text-white rounded-full font-semibold shadow-lg hover:bg-slate-800 transition-all">
+                Get Started
+              </button>
+            </motion.div>
+          )}
+
+          {/* Q2: Static Data */}
+          {step === 2 && (
+            <motion.div key="step2" variants={slideVariants} initial="enter" animate="center" exit="exit" className="space-y-6">
+              <h2 className="text-2xl font-bold text-slate-800">Tell us about you</h2>
+              <div className="space-y-4">
+                <input placeholder="First Name" className="w-full p-4 bg-slate-50 rounded-xl border border-slate-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 outline-none transition-all" onChange={(e) => updateField('firstName', e.target.value)} value={formData.firstName} />
+                <input placeholder="Last Name" className="w-full p-4 bg-slate-50 rounded-xl border border-slate-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 outline-none transition-all" onChange={(e) => updateField('lastName', e.target.value)} value={formData.lastName} />
+                <div>
+                    <label className="text-xs text-slate-400 ml-1">Date of Birth</label>
+                    <input type="date" className="w-full p-4 bg-slate-50 rounded-xl border border-slate-200 outline-none" onChange={(e) => updateField('dob', e.target.value)} value={formData.dob} />
+                </div>
+                <select className="w-full p-4 bg-slate-50 rounded-xl border border-slate-200 outline-none" onChange={(e) => updateField('sex', e.target.value)} value={formData.sex}>
+                  <option value="">Select Sex</option>
+                  <option value="Male">Male</option>
+                  <option value="Female">Female</option>
+                  <option value="Other">Other</option>
+                </select>
+              </div>
+            </motion.div>
+          )}
+
+          {/* Q3: Medical History */}
+          {step === 3 && (
+            <motion.div key="step3" variants={slideVariants} initial="enter" animate="center" exit="exit" className="space-y-6">
+              <h2 className="text-2xl font-bold text-slate-800">Medical History</h2>
+              <p className="text-slate-500 text-sm">Select all that apply to you.</p>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                {Object.keys(formData.medicalHistory).map((key) => (
+                  <button key={key} onClick={() => toggleMedical(key)}
+                    className={`p-4 rounded-xl border text-left transition-all flex items-center justify-between ${formData.medicalHistory[key] ? 'border-blue-500 bg-blue-50 text-blue-700' : 'border-slate-200 hover:border-slate-300'}`}>
+                    <span className="capitalize">{key.replace(/([A-Z])/g, ' $1').trim()}</span>
+                    {formData.medicalHistory[key] && <CheckCircle size={18} />}
+                  </button>
+                ))}
+              </div>
+            </motion.div>
+          )}
+
+          {/* Q4: Triggers */}
+          {step === 4 && (
+            <motion.div key="step4" variants={slideVariants} initial="enter" animate="center" exit="exit" className="space-y-6">
+              <h2 className="text-2xl font-bold text-slate-800">Known Triggers</h2>
+              <textarea 
+                maxLength={200}
+                placeholder="E.g., Bright lights, Chocolate, Lack of sleep..."
+                className="w-full h-40 p-4 bg-slate-50 rounded-xl border border-slate-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 outline-none resize-none transition-all"
+                onChange={(e) => updateField('triggers', e.target.value)} 
+                value={formData.triggers}
+              />
+              <div className="text-right text-xs text-slate-400">{formData.triggers.length}/200</div>
+            </motion.div>
+          )}
+
+          {/* Q5: Confirmation */}
+          {step === 5 && (
+            <motion.div key="step5" variants={slideVariants} initial="enter" animate="center" exit="exit" className="space-y-6">
+              <h2 className="text-2xl font-bold text-slate-800">Review Data</h2>
+              <div className="bg-slate-50 p-6 rounded-2xl space-y-3 text-sm border border-slate-200">
+                <div className="flex justify-between"><span className="text-slate-500">Name:</span> <span className="font-medium">{formData.firstName} {formData.lastName}</span></div>
+                <div className="flex justify-between"><span className="text-slate-500">DOB:</span> <span className="font-medium">{formData.dob}</span></div>
+                <div className="flex justify-between"><span className="text-slate-500">Sex:</span> <span className="font-medium">{formData.sex}</span></div>
+                <div className="border-t border-slate-200 pt-2 mt-2">
+                  <span className="text-slate-500 block mb-1">History:</span>
+                  <div className="flex flex-wrap gap-1">
+                    {Object.entries(formData.medicalHistory).filter(([_,v]) => v).map(([k]) => (
+                        <span key={k} className="px-2 py-1 bg-white border border-slate-200 rounded text-xs capitalize">{k}</span>
+                    ))}
+                  </div>
+                </div>
+              </div>
+              <div className="text-center text-sm text-slate-500">Is this information correct?</div>
+            </motion.div>
+          )}
+
+          {/* Q6: Success */}
+          {step === 6 && (
+             <motion.div key="step6" initial={{ scale: 0.8, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} className="flex flex-col items-center justify-center h-full text-center space-y-6">
+                <div className="w-20 h-20 bg-green-100 text-green-600 rounded-full flex items-center justify-center mb-4">
+                    <CheckCircle size={40} />
+                </div>
+                <h2 className="text-2xl font-bold text-slate-800">Submission Received</h2>
+                <p className="text-slate-500">Thank you for your submission. Your basic results have come in.</p>
+                <button onClick={() => onComplete(formData)} className="w-full py-4 bg-blue-600 text-white rounded-xl font-bold shadow-lg shadow-blue-200 hover:bg-blue-700 transition-all">
+                    Enter App
+                </button>
+             </motion.div>
+          )}
+        </AnimatePresence>
+      </div>
+
+      {/* Navigation Buttons (Hidden on First and Last step) */}
+      {step > 1 && step < 6 && (
+        <div className="flex justify-between mt-6 pt-6 border-t border-slate-100">
+          <button onClick={back} className="flex items-center text-slate-500 hover:text-slate-800 font-medium px-4 py-2">
+            <ChevronLeft size={18} className="mr-1" /> Back
+          </button>
+          <button onClick={next} className="flex items-center bg-slate-900 text-white px-6 py-3 rounded-xl font-medium shadow-lg hover:bg-slate-800 transition-all">
+            {step === 5 ? 'Confirm' : 'Next'} <ChevronRight size={18} className="ml-1" />
+          </button>
+        </div>
+      )}
+    </div>
+  );
+}
+==================================================
+FILE: ./neurawave-hackathon/src/components/Recommendations.jsx
+==================================================
+import React, { useState } from 'react';
+import { motion } from 'framer-motion';
+import { X } from 'lucide-react';
+
+export default function DailyCheckIn({ onComplete, onCancel }) {
+  const [vitals, setVitals] = useState({ stress: 5, mood: 5, steps: 5 });
+
+  return (
+    <motion.div initial={{ y: '100%' }} animate={{ y: 0 }} exit={{ y: '100%' }} className="fixed inset-0 bg-white z-50 flex flex-col">
+      <div className="p-6 flex justify-between items-center border-b border-slate-100">
+        <h2 className="text-xl font-bold text-slate-800">Daily Check-in</h2>
+        <button onClick={onCancel} className="p-2 bg-slate-100 rounded-full text-slate-500 hover:bg-slate-200">
+            <X size={20} />
+        </button>
+      </div>
+
+      <div className="flex-1 p-8 space-y-10 overflow-y-auto">
+        
+        {/* Stress Slider */}
+        <div className="space-y-4">
+            <div className="flex justify-between">
+                <label className="font-bold text-slate-700">Stress Level</label>
+                <span className="px-2 py-1 bg-red-100 text-red-600 text-xs font-bold rounded">{vitals.stress}/10</span>
+            </div>
+            <input type="range" min="1" max="10" value={vitals.stress} onChange={(e) => setVitals({...vitals, stress: parseInt(e.target.value)})}
+                className="w-full h-3 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-red-500" />
+            <div className="flex justify-between text-xs text-slate-400"><span>Calm</span><span>Severe</span></div>
+        </div>
+
+        {/* Mood Slider */}
+        <div className="space-y-4">
+            <div className="flex justify-between">
+                <label className="font-bold text-slate-700">Mood</label>
+                <span className="px-2 py-1 bg-blue-100 text-blue-600 text-xs font-bold rounded">{vitals.mood}/10</span>
+            </div>
+            <input type="range" min="1" max="10" value={vitals.mood} onChange={(e) => setVitals({...vitals, mood: parseInt(e.target.value)})}
+                className="w-full h-3 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-blue-500" />
+            <div className="flex justify-between text-xs text-slate-400"><span>Sad</span><span>Happy</span></div>
+        </div>
+
+        {/* Steps Slider */}
+        <div className="space-y-4">
+            <div className="flex justify-between">
+                <label className="font-bold text-slate-700">Activity</label>
+                <span className="px-2 py-1 bg-green-100 text-green-600 text-xs font-bold rounded">{vitals.steps * 1000} Steps</span>
+            </div>
+            <input type="range" min="1" max="10" value={vitals.steps} onChange={(e) => setVitals({...vitals, steps: parseInt(e.target.value)})}
+                className="w-full h-3 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-green-500" />
+            <div className="flex justify-between text-xs text-slate-400"><span>Sedentary</span><span>Active (10k+)</span></div>
+        </div>
+
+      </div>
+
+      <div className="p-6 border-t border-slate-100">
+        <button onClick={() => onComplete(vitals)} className="w-full py-4 bg-slate-900 text-white rounded-xl font-bold shadow-lg hover:bg-slate-800 transition-all">
+            Confirm Entry
+        </button>
+      </div>
+    </motion.div>
+  );
+}
+==================================================
+FILE: ./neurawave-hackathon/src/components/DailyCheckIn.jsx
+==================================================
+
+==================================================
+FILE: ./neurawave-hackathon/src/components/Dashboard.jsx
+==================================================
+import React from 'react';
+import { Settings, Zap, Calendar } from 'lucide-react';
+import { motion } from 'framer-motion';
+
+export default function Dashboard({ user, onDailyCheckIn, onRecommendations }) {
+  return (
+    <div className="h-full flex flex-col bg-slate-50">
+      {/* Header */}
+      <div className="p-6 flex justify-between items-center bg-white shadow-sm z-10">
+        <div>
+            <div className="text-xs text-slate-400 font-bold uppercase tracking-wide">Welcome back</div>
+            <h1 className="text-xl font-bold text-slate-800">{user?.firstName || "User"} {user?.lastName || ""}</h1>
+        </div>
+        <button className="p-2 bg-slate-100 rounded-full hover:bg-slate-200 transition-colors">
+            <Settings size={20} className="text-slate-600" />
+        </button>
+      </div>
+
+      <div className="flex-1 overflow-y-auto p-6 space-y-6">
+        
+        {/* Migraine Probability Circle - The "Hero" */}
+        <div className="bg-gradient-to-br from-slate-800 to-slate-900 rounded-3xl p-8 text-white shadow-xl relative overflow-hidden">
+            {/* Decorative blur */}
+            <div className="absolute top-0 right-0 w-32 h-32 bg-blue-500 rounded-full mix-blend-overlay filter blur-3xl opacity-50"></div>
+            
+            <div className="flex flex-col items-center relative z-10">
+                <h3 className="text-blue-200 text-sm font-medium mb-4 uppercase tracking-widest">Daily Probability</h3>
+                
+                {/* Animated Circle */}
+                <div className="relative w-48 h-48 flex items-center justify-center">
+                    <svg className="absolute inset-0 w-full h-full transform -rotate-90">
+                        <circle cx="96" cy="96" r="88" stroke="currentColor" strokeWidth="12" fill="transparent" className="text-slate-700" />
+                        <motion.circle 
+                            cx="96" cy="96" r="88" 
+                            stroke="currentColor" strokeWidth="12" fill="transparent" 
+                            className="text-teal-400"
+                            strokeDasharray="552"
+                            strokeDashoffset="552"
+                            initial={{ strokeDashoffset: 552 }}
+                            animate={{ strokeDashoffset: 552 - (552 * 0.5) }} // 50% filled
+                            transition={{ duration: 2, ease: "easeOut" }}
+                            strokeLinecap="round"
+                        />
+                    </svg>
+                    <div className="text-center">
+                        <span className="text-5xl font-bold">50%</span>
+                        <p className="text-xs text-slate-400 mt-1">Moderate Risk</p>
+                    </div>
+                </div>
+
+                <button onClick={onDailyCheckIn} className="mt-8 flex items-center space-x-2 bg-white/10 hover:bg-white/20 backdrop-blur-sm px-4 py-2 rounded-full text-sm font-medium transition-all border border-white/10">
+                    <Zap size={16} className="text-yellow-400" />
+                    <span>Log Daily Vitals</span>
+                </button>
+            </div>
+        </div>
+
+        {/* History Section */}
+        <div className="bg-white p-6 rounded-2xl shadow-sm border border-slate-100">
+            <div className="flex items-center space-x-2 mb-4 text-slate-800">
+                <Calendar size={20} className="text-blue-500" />
+                <h3 className="font-bold">History</h3>
+            </div>
+            {/* Static Calendar Grid Placeholder */}
+            <div className="grid grid-cols-7 gap-2 text-center text-xs font-medium text-slate-400 mb-2">
+                <div>M</div><div>T</div><div>W</div><div>T</div><div>F</div><div>S</div><div>S</div>
+            </div>
+            <div className="grid grid-cols-7 gap-2">
+                {[...Array(7)].map((_, i) => (
+                    <div key={i} className="aspect-square rounded-lg bg-slate-50 flex items-center justify-center text-sm text-slate-600 hover:bg-blue-50 transition-colors border border-slate-100 relative">
+                        {14 + i}
+                        {/* Fake data dots */}
+                        <div className={`absolute bottom-1 w-1.5 h-1.5 rounded-full ${i % 2 === 0 ? 'bg-teal-400' : 'bg-orange-400'}`}></div>
+                    </div>
+                ))}
+            </div>
+        </div>
+
+        {/* Recommendation CTA */}
+        <button onClick={onRecommendations} className="w-full py-4 bg-white border-2 border-blue-100 rounded-2xl text-blue-600 font-bold shadow-sm hover:shadow-md hover:border-blue-200 transition-all flex items-center justify-center space-x-2">
+            <span>View AI Recommendations</span>
+            <ChevronRight size={20} />
+        </button>
+      </div>
+    </div>
+  );
+}
+
+import { ChevronRight } from 'lucide-react';
